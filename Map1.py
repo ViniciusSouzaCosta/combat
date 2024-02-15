@@ -50,7 +50,7 @@ class BreakoutGame:
     def __init__(self):
         self.screen_manager = ScreenManager(1000, 625, "Combat", background_color=(51, 180, 51))
         self.clock = pygame.time.Clock()
-        self.player_rect = pygame.Rect(100, 100, 50, 50)  # Exemplo de um jogador retangular
+        self.player_rect = pygame.Rect(100, 100, 50, 50) 
         self.player_speed = 5
 
     def run(self):
@@ -62,7 +62,7 @@ class BreakoutGame:
                     running = False
 
             keys = pygame.key.get_pressed()
-            player_rect_old_pos = self.player_rect.copy()  # Salva a posição anterior do jogador
+            player_rect_old_pos = self.player_rect.copy()
             if keys[pygame.K_LEFT]:
                 self.player_rect.x -= self.player_speed
                 if self.player_rect.left < self.screen_manager.border_thickness:
@@ -81,7 +81,7 @@ class BreakoutGame:
                     self.player_rect.bottom = self.screen_manager.height - self.screen_manager.border_thickness
 
             obstacles_config = [
-                (290, 327, 100, 'horizontal'),  # (x, y, size, shape)
+                (290, 327, 100, 'horizontal'), 
                 (475, 425, 110, 'vertical'),
                 (600, 327, 100, 'horizontal'),
                 (475, 150, 110, 'vertical'),
@@ -94,14 +94,13 @@ class BreakoutGame:
                 (110, 270, 40, 'horizontal'),
                 (110, 400, 40, 'horizontal'),
             ]
-
-            # Verifica colisão com obstáculos
+            
             if self.screen_manager.check_collision(self.player_rect, obstacles_config):
-                self.player_rect = player_rect_old_pos  # Retorna o jogador para a posição anterior
+                self.player_rect = player_rect_old_pos 
 
             self.screen_manager.clear_screen()
             self.screen_manager.draw_obstacles(obstacles_config)
-            pygame.draw.rect(self.screen_manager.screen, (255, 0, 0), self.player_rect)  # Desenha o jogador
+            pygame.draw.rect(self.screen_manager.screen, (255, 0, 0), self.player_rect) 
             self.screen_manager.update_screen()
 
 if __name__ == "__main__":
